@@ -16,8 +16,8 @@ func TestCalculator(t *testing.T) {
 		{2.0, 3.0, "-", -1.0},
 		{2.0, 3.0, "*", 6.0},
 		{6.0, 3.0, "/", 2.0},
-		{2.0, 3.0, "/", 0.0}, // Division by zero test
-		{2.0, 3.0, "%", 0.0}, // Invalid operator test
+		{2.0, 3.0, "/", 0.6666666666666666},
+		{2.0, 3.0, "%", 0.0},
 	}
 
 	for _, tt := range tests {
