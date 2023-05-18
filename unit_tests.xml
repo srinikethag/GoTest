@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="7" failures="2" errors="0" time="0.279647">
+	<testsuite tests="7" failures="2" time="0.098000" name="test" timestamp="2023-05-18T11:21:49+05:30">
+		<properties>
+			<property name="go.version" value="go1.20.3 darwin/arm64"></property>
+		</properties>
+		<testcase classname="test" name="TestCalculator/2_/_3" time="0.000000">
+			<failure message="Failed" type="">=== RUN   TestCalculator/2_/_3&#xA;    main_test.go:30: got 0.6666666666666666, want 0&#xA;--- FAIL: TestCalculator/2_/_3 (0.00s)&#xA;</failure>
+		</testcase>
+		<testcase classname="test" name="TestCalculator" time="0.000000">
+			<failure message="Failed" type="">=== RUN   TestCalculator&#xA;--- FAIL: TestCalculator (0.00s)&#xA;</failure>
+		</testcase>
+		<testcase classname="test" name="TestCalculator/2_+_3" time="0.000000"></testcase>
+		<testcase classname="test" name="TestCalculator/2_-_3" time="0.000000"></testcase>
+		<testcase classname="test" name="TestCalculator/2_*_3" time="0.000000"></testcase>
+		<testcase classname="test" name="TestCalculator/6_/_3" time="0.000000"></testcase>
+		<testcase classname="test" name="TestCalculator/2_%_3" time="0.000000"></testcase>
+	</testsuite>
+</testsuites>
