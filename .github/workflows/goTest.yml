@@ -30,9 +30,6 @@ jobs:
     - name: Install testmo cli
       run: npm install --no-save @testmo/testmo-cli
 
-    - name: Test
-      run: gotestsum --junitfile unit_tests.xml
-
     - name: Run Go tests 
       run: |
           npx testmo automation:run:submit \
