@@ -42,9 +42,11 @@ jobs:
             --source "backend" \
             --results *.xml \
             -- gotestsum --junitfile unit_tests.xml # Note space after --
-            
-    - name: Submit results to testomat.io
-      run: TESTOMATIO=byf5cbe18n06 npx report-xml "/**.xml" --lang="other"
       env:
           TESTMO_URL: ${{ secrets.TESTMO_URL }}
           TESTMO_TOKEN: ${{ secrets.TESTMO_TOKEN }}
+            
+    - name: Submit results to testomat.io
+      run: TESTOMATIO=byf5cbe18n06 npx report-xml "/**.xml" --lang="other"
+      
+      
