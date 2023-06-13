@@ -29,15 +29,13 @@ jobs:
       
     - name: Install testmo cli
       run: npm install --no-save @testmo/testmo-cli
-    
-    - name: Install testomat.io
-      run: npm i -g @testomatio/reporter
 
     - name: Run Go tests 
       run: |
           npx testmo automation:run:submit \
             --instance "$TESTMO_URL" \
             --project-id 1 \
+            --tags go \
             --name "Go test run" \
             --source "backend" \
             --results *.xml \
@@ -45,8 +43,5 @@ jobs:
       env:
           TESTMO_URL: ${{ secrets.TESTMO_URL }}
           TESTMO_TOKEN: ${{ secrets.TESTMO_TOKEN }}
-            
-    - name: Submit results to testomat.io
-      run: TESTOMATIO=byf5cbe18n06 npx report-xml "./**.xml" --lang="other"
       
       
