@@ -46,13 +46,11 @@ jobs:
           --name build \
           --url "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
           --resources resources.json
-      env:
-        TESTMO_TOKEN: ${{ secrets.TESTMO_TOKEN }}
   
     - name: Run Go tests 
       run: |
           npx testmo automation:run:submit \
-            --instance "$TESTMO_URL" \
+            --instance "${{ secrets.TESTMO_URL }}" \
             --project-id 1 \
             --tags go \
             --name "Go test run" \
@@ -60,7 +58,6 @@ jobs:
             --results tests_results.xml \
             -- gotestsum # Note space after --
       env:
-          TESTMO_URL: ${{ secrets.TESTMO_URL }}
           TESTMO_TOKEN: ${{ secrets.TESTMO_TOKEN }}
           TESTMO_PROJECT_ID: 1
           GOTESTSUM_JUNITFILE: tests_results.xml
