@@ -18,9 +18,6 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    env:
-      TESTMO_PROJECT_ID: 1
-      GOTESTSUM_JUNITFILE: tests_results.xml
     steps:
     - uses: actions/checkout@v3
 
@@ -65,5 +62,7 @@ jobs:
       env:
           TESTMO_URL: ${{ secrets.TESTMO_URL }}
           TESTMO_TOKEN: ${{ secrets.TESTMO_TOKEN }}
+          TESTMO_PROJECT_ID: 1
+          GOTESTSUM_JUNITFILE: tests_results.xml
       
       
