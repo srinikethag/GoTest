@@ -17,6 +17,10 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    env:
+      DB_PORT: 5434
+      TESTMO_PROJECT_ID: 1
+      GOTESTSUM_JUNITFILE: tests_results.xml
     steps:
     - uses: actions/checkout@v3
 
@@ -42,7 +46,7 @@ jobs:
             --tags go \
             --name "Go test run" \
             --source "backend" \
-            --results *.xml \
+            --results tests_results.xml \
             -- gotestsum --junitfile unit_tests.xml # Note space after --
       env:
           TESTMO_URL: ${{ secrets.TESTMO_URL }}
