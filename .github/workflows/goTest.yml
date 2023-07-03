@@ -49,6 +49,8 @@ jobs:
           --name build \
           --url "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
           --resources resources.json
+      env:
+        TESTMO_TOKEN: ${{ secrets.TESTMO_TOKEN }}
   
     - name: Run Go tests 
       run: |
