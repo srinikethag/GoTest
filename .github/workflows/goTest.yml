@@ -60,6 +60,5 @@ jobs:
       env:
           TESTMO_TOKEN: ${{ secrets.TESTMO_TOKEN }}
           TESTMO_PROJECT_ID: 1
-          GOTESTSUM_JUNITFILE: tests_results.xml
       
       
