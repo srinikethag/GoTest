@@ -18,7 +18,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      DB_PORT: 5434
       TESTMO_PROJECT_ID: 1
       GOTESTSUM_JUNITFILE: tests_results.xml
     steps:
@@ -34,10 +33,9 @@ jobs:
     
     - name: Install gotestsum
       run: go install gotest.tools/gotestsum@v1.10.0
-      
-    - name: Install testmo cli
-      run: npm install --no-save @testmo/testmo-cli
 
+    - name: Add github configs to testmo
+      run: make testmoconfig
     - name: Run Go tests 
       run: |
           npx testmo automation:run:submit \
