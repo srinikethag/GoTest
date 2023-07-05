@@ -13,6 +13,9 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+env:
+  TESTMO_TOKEN: ${{ secrets.TESTMO_TOKEN }}
+  GOTESTSUM_JUNITFILE: tests_results.xml
 
 jobs:
 
@@ -48,17 +51,8 @@ jobs:
           --resources resources.json
   
     - name: Run Go tests 
-      run: |
-          npx testmo automation:run:submit \
-            --instance "${{ secrets.TESTMO_URL }}" \
-            --project-id 1 \
-            --tags go \
-            --name "Go test run" \
-            --source "backend" \
-            --results tests_results.xml \
-            -- gotestsum # Note space after --
-      env:
-          TESTMO_TOKEN: ${{ secrets.TESTMO_TOKEN }}
-          TESTMO_PROJECT_ID: 1
+      run: gotestsum
+    - name: Upload results to testmo
+      run: make testmo-run-go-run
       
       
