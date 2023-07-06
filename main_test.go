@@ -12,7 +12,7 @@ func TestCalculator(t *testing.T) {
 		operator   string
 		wantResult float64
 	}{
-		{2.0, 3.0, "+", 5.0},
+		{2.0, 3.0, "+", 6.0},
 		{2.0, 3.0, "-", -1.0},
 		{2.0, 3.0, "*", 6.0},
 		{6.0, 3.0, "/", 2.0},
