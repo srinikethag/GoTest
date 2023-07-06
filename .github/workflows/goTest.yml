@@ -54,5 +54,8 @@ jobs:
       run: gotestsum
     - name: Upload results to testmo
       run: make testmo-run-go-run
+      if: ${{ always() }}
+    - name: test message
+      run: echo test
       
       
