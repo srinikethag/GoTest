@@ -1,6 +1,8 @@
 # This workflow will build a golang project
 # sample change done
 # second change
+# one more change
+# test
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
 
 name: Go
@@ -11,6 +13,9 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+env:
+  TESTMO_TOKEN: ${{ secrets.TESTMO_TOKEN }}
+  GOTESTSUM_JUNITFILE: tests_results.xml
 
 jobs:
 
@@ -29,22 +34,28 @@ jobs:
     
     - name: Install gotestsum
       run: go install gotest.tools/gotestsum@v1.10.0
-      
+    
     - name: Install testmo cli
-      run: npm install --no-save @testmo/testmo-cli
+      run: make install-testmo
 
-    - name: Run Go tests 
+    - name: Add github configs to testmo
       run: |
-          npx testmo automation:run:submit \
-            --instance "$TESTMO_URL" \
-            --project-id 1 \
-            --tags go \
-            --name "Go test run" \
-            --source "backend" \
-            --results *.xml \
-            -- gotestsum --junitfile unit_tests.xml # Note space after --
-      env:
-          TESTMO_URL: ${{ secrets.TESTMO_URL }}
-          TESTMO_TOKEN: ${{ secrets.TESTMO_TOKEN }}
+        npx testmo automation:resources:add-field \
+          --name git \
+          --type string \
+          --value ${GITHUB_SHA:0:7} \
+          --resources resources.json
+        npx testmo automation:resources:add-link \
+          --name build \
+          --url "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" \
+          --resources resources.json
+  
+    - name: Run Go tests 
+      run: gotestsum
+    - name: Upload results to testmo
+      run: make testmo-run-go-run
+      if: success() || failure()
+    - name: test message
+      run: echo test
       
       
